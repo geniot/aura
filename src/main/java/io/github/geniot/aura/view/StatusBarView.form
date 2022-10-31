@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="io.github.geniot.aura.view.StatusBarView">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="30"/>
+    </constraints>
+    <properties>
+      <preferredSize width="0" height="30"/>
+      <visible value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="b070b" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <preferredSize width="210" height="30"/>
+        </properties>
+        <border type="empty">
+          <size top="0" left="10" bottom="5" right="10"/>
+        </border>
+        <children>
+          <grid id="b4ab9" binding="rightPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="East"/>
+            <properties>
+              <preferredSize width="100" height="16"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="f1edc" class="javax.swing.JLabel" binding="rightStatusLabel">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <horizontalAlignment value="4"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="d3b2e" binding="leftPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="West"/>
+            <properties>
+              <preferredSize width="100" height="16"/>
+            </properties>
+            <border type="none">
+              <size top="0" left="5" bottom="0" right="0"/>
+            </border>
+            <children>
+              <component id="27b48" class="javax.swing.JLabel" binding="leftStatusLabel">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="272ce" binding="centerPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="2835a" class="javax.swing.JLabel" binding="centerStatusLabel">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

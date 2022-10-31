@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="io.github.geniot.aura.view.ToolbarView">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="50"/>
+    </constraints>
+    <properties>
+      <preferredSize width="600" height="50"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="1e04" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <preferredSize width="600" height="50"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="84783" binding="filterPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="West"/>
+            <properties/>
+            <border type="none">
+              <size top="5" left="0" bottom="5" right="5"/>
+            </border>
+            <children>
+              <component id="f8a16" class="javax.swing.JButton" binding="airlineDesignatorFilter">
+                <constraints/>
+                <properties>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <horizontalTextPosition value="0"/>
+                  <margin top="1" left="1" bottom="1" right="1"/>
+                  <maximumSize width="40" height="40"/>
+                  <minimumSize width="40" height="40"/>
+                  <preferredSize width="40" height="40"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="1e423" class="javax.swing.JButton" binding="flightNumberFilter">
+                <constraints/>
+                <properties>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <margin top="1" left="1" bottom="1" right="1"/>
+                  <maximumSize width="70" height="40"/>
+                  <minimumSize width="70" height="40"/>
+                  <preferredSize width="60" height="40"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b6ce6" binding="actionsPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="95214" class="javax.swing.JButton" binding="addButton">
+                <constraints/>
+                <properties>
+                  <borderPainted value="true"/>
+                  <enabled value="true"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <icon value="images/Add.png"/>
+                  <maximumSize width="40" height="40"/>
+                  <minimumSize width="40" height="40"/>
+                  <preferredSize width="40" height="40"/>
+                  <requestFocusEnabled value="false"/>
+                  <text value=""/>
+                  <toolTipText value="Add flights"/>
+                </properties>
+              </component>
+              <component id="c44f0" class="javax.swing.JButton" binding="saveButton">
+                <constraints/>
+                <properties>
+                  <enabled value="false"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <icon value="images/Save.png"/>
+                  <maximumSize width="40" height="40"/>
+                  <minimumSize width="40" height="40"/>
+                  <preferredSize width="40" height="40"/>
+                  <text value=""/>
+                  <toolTipText value="Save"/>
+                </properties>
+              </component>
+              <component id="4a55b" class="javax.swing.JButton" binding="preferencesButton">
+                <constraints/>
+                <properties>
+                  <borderPainted value="true"/>
+                  <enabled value="true"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <icon value="images/Style.png"/>
+                  <maximumSize width="40" height="40"/>
+                  <minimumSize width="40" height="40"/>
+                  <preferredSize width="40" height="40"/>
+                  <requestFocusEnabled value="false"/>
+                  <text value=""/>
+                  <toolTipText value="Preferences"/>
+                </properties>
+              </component>
+              <component id="d2587" class="javax.swing.JButton" binding="loadButton">
+                <constraints/>
+                <properties>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <icon value="images/Load.png"/>
+                  <maximumSize width="40" height="40"/>
+                  <minimumSize width="40" height="40"/>
+                  <preferredSize width="40" height="40"/>
+                  <text value=""/>
+                  <toolTipText value="Load"/>
+                </properties>
+              </component>
+              <component id="7b7c" class="javax.swing.JButton" binding="unloadButton">
+                <constraints/>
+                <properties>
+                  <enabled value="true"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <icon value="images/Unload.png"/>
+                  <maximumSize width="40" height="40"/>
+                  <minimumSize width="40" height="40"/>
+                  <preferredSize width="40" height="40"/>
+                  <text value=""/>
+                  <toolTipText value="Unload"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
