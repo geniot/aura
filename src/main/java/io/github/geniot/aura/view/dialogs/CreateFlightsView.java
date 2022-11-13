@@ -1,4 +1,4 @@
-package io.github.geniot.aura.view;
+package io.github.geniot.aura.view.dialogs;
 
 import io.github.geniot.aura.model.DatedFlight;
 

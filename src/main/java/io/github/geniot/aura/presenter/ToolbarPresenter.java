@@ -7,15 +7,16 @@ import io.github.geniot.aura.model.AuraModel;
 import io.github.geniot.aura.model.DatedFlight;
 import io.github.geniot.aura.model.EventType;
 import io.github.geniot.aura.util.Utils;
-import io.github.geniot.aura.view.CreateFlightsDialog;
-import io.github.geniot.aura.view.MainFrameView;
-import io.github.geniot.aura.view.PreferencesDialog;
-import io.github.geniot.aura.view.ToolbarView;
+import io.github.geniot.aura.view.*;
+import io.github.geniot.aura.view.dialogs.CreateFlightsDialog;
+import io.github.geniot.aura.view.dialogs.PreferencesDialog;
+import io.github.geniot.aura.view.dialogs.SyncDialog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.swing.*;
 
 @Component
 public class ToolbarPresenter implements ApplicationListener<AppEvent> {
@@ -53,6 +54,10 @@ public class ToolbarPresenter implements ApplicationListener<AppEvent> {
             CreateFlightsDialog createFlightsDialog = new CreateFlightsDialog(mainFrameView, datedFlight, auraModel);
             createFlightsDialog.setVisible(true);
         });
+        toolbarView.saveButton.addActionListener(e -> {
+            SyncDialog syncDialog = new SyncDialog(mainFrameView, auraModel);
+            syncDialog.setVisible(true);
+        });
     }
 
     private void enableWorkspaceButtons(boolean b) {
@@ -70,7 +75,11 @@ public class ToolbarPresenter implements ApplicationListener<AppEvent> {
                 toolbarView.loadButton.setVisible(false);
                 toolbarView.unloadButton.setVisible(true);
                 //debug
-                toolbarView.addButton.doClick();
+//                toolbarView.addButton.doClick();
+                SwingUtilities.invokeLater(() -> {
+                    SyncDialog syncDialog = new SyncDialog(mainFrameView, auraModel);
+                    syncDialog.setVisible(true);
+                });
             }
             if (event.getEventType().equals(EventType.REPOSITORY_UNLOADED)) {
                 enableWorkspaceButtons(false);

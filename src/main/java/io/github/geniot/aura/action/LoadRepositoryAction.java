@@ -4,7 +4,7 @@ import io.github.geniot.aura.AuraApplication;
 import io.github.geniot.aura.model.AuraModel;
 import io.github.geniot.aura.model.Prop;
 import io.github.geniot.aura.view.MainFrameView;
-import io.github.geniot.aura.view.ProgressDialog;
+import io.github.geniot.aura.view.dialogs.ProgressDialog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="io.github.geniot.aura.view.dialogs.SyncView">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="empty">
+      <size top="5" left="5" bottom="5" right="5"/>
+    </border>
+    <children>
+      <grid id="f3259" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="empty">
+          <size top="5" left="0" bottom="0" right="0"/>
+        </border>
+        <children>
+          <grid id="a7f45" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="empty">
+              <size top="0" left="0" bottom="0" right="0"/>
+            </border>
+            <children>
+              <grid id="29cef" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="e3645" class="javax.swing.JButton" binding="syncButton">
+                    <constraints/>
+                    <properties>
+                      <enabled value="false"/>
+                      <margin top="1" left="1" bottom="1" right="1"/>
+                      <maximumSize width="-1" height="-1"/>
+                      <minimumSize width="-1" height="-1"/>
+                      <preferredSize width="80" height="30"/>
+                      <text value="Sync"/>
+                    </properties>
+                  </component>
+                  <component id="7a6b9" class="javax.swing.JButton" binding="closeButton">
+                    <constraints/>
+                    <properties>
+                      <enabled value="true"/>
+                      <margin top="1" left="1" bottom="1" right="1"/>
+                      <maximumSize width="-1" height="-1"/>
+                      <minimumSize width="-1" height="-1"/>
+                      <preferredSize width="80" height="30"/>
+                      <text value="Close"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="9a41c" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="d269f" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="North"/>
+            <properties/>
+            <border type="bevel-raised" title="Commit Message *">
+              <size top="0" left="0" bottom="5" right="0"/>
+            </border>
+            <children>
+              <grid id="41fd3" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="empty">
+                  <size top="5" left="5" bottom="5" right="5"/>
+                </border>
+                <children>
+                  <component id="21cab" class="javax.swing.JTextField" binding="messageTextField">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="1883d" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="bevel-raised" title="Log">
+              <size top="5" left="5" bottom="5" right="5"/>
+            </border>
+            <children>
+              <grid id="fa812" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="empty">
+                  <size top="5" left="5" bottom="5" right="5"/>
+                </border>
+                <children>
+                  <scrollpane id="4a177">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none">
+                      <size top="0" left="0" bottom="5" right="0"/>
+                    </border>
+                    <children>
+                      <component id="2a9fe" class="javax.swing.JTextArea" binding="logTextArea">
+                        <constraints/>
+                        <properties>
+                          <editable value="false"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,6 +1,7 @@
-package io.github.geniot.aura.view;
+package io.github.geniot.aura.view.dialogs;
 
 import io.github.geniot.aura.action.Progressable;
+import io.github.geniot.aura.view.MainFrameView;
 
 import javax.swing.*;
 import java.awt.*;

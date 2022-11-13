@@ -1,4 +1,4 @@
-package io.github.geniot.aura.view;
+package io.github.geniot.aura.view.dialogs;
 
 
 import io.github.geniot.aura.event.AppEvent;
@@ -6,6 +6,8 @@ import io.github.geniot.aura.model.AuraModel;
 import io.github.geniot.aura.model.DatedFlight;
 import io.github.geniot.aura.model.EventType;
 import io.github.geniot.aura.model.FlightStatus;
+import io.github.geniot.aura.view.MainFrameView;
+import io.github.geniot.aura.view.SelectButton;
 import io.github.geniot.aura.view.listcellrenderer.NewFlightListCellRenderer;
 
 import javax.swing.*;

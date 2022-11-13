@@ -1,8 +1,9 @@
-package io.github.geniot.aura.view;
+package io.github.geniot.aura.view.dialogs;
 
 import io.github.geniot.aura.AuraApplication;
 import io.github.geniot.aura.model.Prop;
 import io.github.geniot.aura.util.LafManager;
+import io.github.geniot.aura.view.MainFrameView;
 
 import javax.swing.*;
 import java.awt.*;
