@@ -10,9 +10,7 @@ It loads a folder with scheduling data for a year.
 * Bulk edit selected flights.
 * You can change departure/arrival time, status (cancel, mark for removal).
 * Check/revert your changes in the diff view (center).
-* Save your changes by providing a commit message. 
-
-The whole process is similar to source code editing in an IDE such as Intellij IDEA. 
+* Save your changes by providing a commit message.
 
 Coloring conventions:
 * GREEN - new flights
