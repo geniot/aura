@@ -7,7 +7,8 @@ import io.github.geniot.aura.model.AuraModel;
 import io.github.geniot.aura.model.DatedFlight;
 import io.github.geniot.aura.model.EventType;
 import io.github.geniot.aura.util.Utils;
-import io.github.geniot.aura.view.*;
+import io.github.geniot.aura.view.MainFrameView;
+import io.github.geniot.aura.view.ToolbarView;
 import io.github.geniot.aura.view.dialogs.CreateFlightsDialog;
 import io.github.geniot.aura.view.dialogs.PreferencesDialog;
 import io.github.geniot.aura.view.dialogs.SyncDialog;
@@ -16,7 +17,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.swing.*;
 
 @Component
 public class ToolbarPresenter implements ApplicationListener<AppEvent> {
@@ -76,10 +76,10 @@ public class ToolbarPresenter implements ApplicationListener<AppEvent> {
                 toolbarView.unloadButton.setVisible(true);
                 //debug
 //                toolbarView.addButton.doClick();
-                SwingUtilities.invokeLater(() -> {
-                    SyncDialog syncDialog = new SyncDialog(mainFrameView, auraModel);
-                    syncDialog.setVisible(true);
-                });
+//                SwingUtilities.invokeLater(() -> {
+//                    SyncDialog syncDialog = new SyncDialog(mainFrameView, auraModel);
+//                    syncDialog.setVisible(true);
+//                });
             }
             if (event.getEventType().equals(EventType.REPOSITORY_UNLOADED)) {
                 enableWorkspaceButtons(false);

@@ -13,8 +13,8 @@ public class AuraModel {
     private String pathToRepository;
     private Integer repositoryYear;
 
-    private SortedMap<LocalDate, SortedMap<Integer, SortedSet<DatedFlight>>> datedFlightsMap;
-    private SortedMap<String, SortedSet<DatedFlight>> namedFlightsMap;//key=airlineDesignator+flightNumber
+    private SortedMap<LocalDate, SortedMap<Integer, SortedSet<DatedFlight>>> datedFlightsMap = new TreeMap<>();
+    private SortedMap<String, SortedSet<DatedFlight>> namedFlightsMap = new TreeMap<>();//key=airlineDesignator+flightNumber
 
     private SortedSet<DatedFlight> createdFlights = new TreeSet<>();
     private SortedSet<DatedFlight> updatedFlights = new TreeSet<>();
@@ -73,5 +73,39 @@ public class AuraModel {
             }
         }
         return null;
+    }
+
+    public void addFlight(DatedFlight datedFlight) {
+        datedFlight.setNewDepartureTime(datedFlight.getDepartureTime());
+        datedFlight.setNewArrivalTime(datedFlight.getArrivalTime());
+        datedFlight.setNewStatus(datedFlight.getStatus());
+
+        LocalDate departureDate = datedFlight.getDepartureDate();
+        int hourOfDay = datedFlight.getDepartureTime().getHour();
+        SortedMap<Integer, SortedSet<DatedFlight>> dateMap = datedFlightsMap.get(departureDate);
+        if (dateMap == null) {
+            dateMap = new TreeMap<>();
+        }
+        SortedSet<DatedFlight> hourFlightsSet = dateMap.get(hourOfDay);
+        if (hourFlightsSet == null) {
+            hourFlightsSet = new TreeSet<>();
+        }
+        hourFlightsSet.add(datedFlight);
+        dateMap.put(hourOfDay, hourFlightsSet);
+        datedFlightsMap.put(departureDate, dateMap);
+        //
+        String nameKey = datedFlight.getAirlineDesignator() + datedFlight.getFlightNumber();
+        SortedSet<DatedFlight> flightsSet = namedFlightsMap.get(nameKey);
+        if (flightsSet == null) {
+            flightsSet = new TreeSet<>();
+        }
+        flightsSet.add(datedFlight);
+        namedFlightsMap.put(nameKey, flightsSet);
+    }
+
+    public void deleteFlight(DatedFlight datedFlight) {
+        datedFlightsMap.get(datedFlight.getDepartureDate()).get(datedFlight.getDepartureTime().getHour()).remove(datedFlight);
+        String nameKey = datedFlight.getAirlineDesignator() + datedFlight.getFlightNumber();
+        namedFlightsMap.get(nameKey).remove(datedFlight);
     }
 }

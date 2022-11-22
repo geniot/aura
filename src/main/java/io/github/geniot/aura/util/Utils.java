@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -55,6 +56,11 @@ public class Utils {
     public static final Font MONOSPACED_FONT = new Font(Font.MONOSPACED, Font.PLAIN, 12);
     public static final Font BIG_MONOSPACED_FONT = new Font(Font.MONOSPACED, Font.PLAIN, 26);
     public static final int SECONDS_PER_DAY = (int) TimeUnit.DAYS.toSeconds(1);
+
+    public static final String[] MONTHS = new String[]{"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
+    public static final String[] WEEKDAYS = new String[]{"mo", "tu", "we", "th", "fr", "sa", "su"};
+
+    public static final DecimalFormat DOUBLE_ZERO_FORMAT = new DecimalFormat("00");
 
     public static String dup(String input, String delimiter, int count) {
         StringBuilder stringBuilder = new StringBuilder();

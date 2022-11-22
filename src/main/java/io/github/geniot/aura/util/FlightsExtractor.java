@@ -9,9 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,12 +20,10 @@ import static io.github.geniot.aura.util.Utils.OBJECT_MAPPER;
 
 public class FlightsExtractor {
     static final String INPUT_FILE = "data/Skyteam_Timetable_html.zip";
-    static final String[] MONTHS = new String[]{"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
-    static final String[] WEEKDAYS = new String[]{"mo", "tu", "we", "th", "fr", "sa", "su"};
 
     static final Pattern FROM_TO_PATTERN = Pattern.compile(">([A-Z]{3})</span>");
     static final Pattern SPAN_VALUE_PATTERN = Pattern.compile("<span[^>]+>([^<]+)</span>");
-    static final DecimalFormat DOUBLE_ZERO_FORMAT = new DecimalFormat("00");
+
 
     /**
      * 1643977 dated flights
@@ -87,15 +83,15 @@ public class FlightsExtractor {
             printMinMax(datedFlights);
 
             //@todo: comment out if necessary
-            copyFlights(datedFlights, 1, 9);
-            copyFlights(datedFlights, 2, 10);
-            copyFlights(datedFlights, 3, 11);
-            copyFlights(datedFlights, 4, 9);
-            copyFlights(datedFlights, 5, 10);
-            copyFlights(datedFlights, 6, 11);
-            copyFlights(datedFlights, 7, 9);
-            copyFlights(datedFlights, 8, 10);
-            copyFlights(datedFlights, 12, 11);
+//            copyFlights(datedFlights, 1, 9);
+//            copyFlights(datedFlights, 2, 10);
+//            copyFlights(datedFlights, 3, 11);
+//            copyFlights(datedFlights, 4, 9);
+//            copyFlights(datedFlights, 5, 10);
+//            copyFlights(datedFlights, 6, 11);
+//            copyFlights(datedFlights, 7, 9);
+//            copyFlights(datedFlights, 8, 10);
+//            copyFlights(datedFlights, 12, 11);
 
             printMinMax(datedFlights);
 
@@ -105,7 +101,7 @@ public class FlightsExtractor {
             for (DatedFlight datedFlight : datedFlights) {
 
                 //@todo: to generate test flights for following years set the value here
-//                datedFlight.setDepartureDate(datedFlight.getDepartureDate().plusYears(1));
+                datedFlight.setDepartureDate(datedFlight.getDepartureDate().plusYears(2));
 
                 if (uniqueDatedFlights.contains(datedFlight)) {
                     ++skippedFlightsCount;
@@ -120,12 +116,7 @@ public class FlightsExtractor {
             //prepare for repository creation
             SortedMap<String, SortedSet<DatedFlight>> repositoryMap = new TreeMap<>();
             for (DatedFlight datedFlight : uniqueDatedFlights) {
-                LocalDate departureDate = datedFlight.getDepartureDate();
-                LocalTime departureTime = datedFlight.getDepartureTime();
-                String key = departureDate.getYear() +
-                        File.separator + DOUBLE_ZERO_FORMAT.format(departureDate.getMonthValue()) + "_" + MONTHS[departureDate.getMonthValue() - 1] +
-                        File.separator + DOUBLE_ZERO_FORMAT.format(departureDate.getDayOfMonth()) + "_" + WEEKDAYS[departureDate.getDayOfWeek().getValue() - 1] +
-                        File.separator + DOUBLE_ZERO_FORMAT.format(departureTime.getHour());
+                String key = datedFlight.getFileKeyFull();
                 SortedSet<DatedFlight> hourFlights = repositoryMap.get(key);
                 if (hourFlights == null) {
                     hourFlights = new TreeSet<>();

@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class SyncView {
     protected JButton syncButton;
-    protected JTextField messageTextField;
-    private JTextArea logTextArea;
+    public JTextField messageTextField;
+    public JTextArea logTextArea;
     protected JPanel rootPanel;
     protected JButton closeButton;
 }

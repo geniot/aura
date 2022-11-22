@@ -10,8 +10,10 @@ import org.springframework.context.ApplicationEventPublisher;
 import javax.swing.*;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.SortedSet;
 
 import static io.github.geniot.aura.util.Utils.OBJECT_MAPPER;
 
@@ -42,9 +44,6 @@ class LoadRepositoryTask extends SwingWorker<Void, String> {
         int max = files.size() == 0 ? 0 : files.size() - 1;
         int current = 0;
 
-        SortedMap<LocalDate, SortedMap<Integer, SortedSet<DatedFlight>>> datedFlightsMap = new TreeMap<>();
-        SortedMap<String, SortedSet<DatedFlight>> namedFlightsMap = new TreeMap<>();
-
         if (!files.isEmpty()) {
             while (!progressable.isCancelRequested() && current <= max) {
 
@@ -54,32 +53,7 @@ class LoadRepositoryTask extends SwingWorker<Void, String> {
                     DatedFlight[] datedFlights = OBJECT_MAPPER.readValue(str, DatedFlight[].class);
 
                     for (DatedFlight datedFlight : datedFlights) {
-
-                        datedFlight.setNewDepartureTime(datedFlight.getDepartureTime());
-                        datedFlight.setNewArrivalTime(datedFlight.getArrivalTime());
-                        datedFlight.setNewStatus(datedFlight.getStatus());
-
-                        LocalDate departureDate = datedFlight.getDepartureDate();
-                        int hourOfDay = datedFlight.getDepartureTime().getHour();
-                        SortedMap<Integer, SortedSet<DatedFlight>> dateMap = datedFlightsMap.get(departureDate);
-                        if (dateMap == null) {
-                            dateMap = new TreeMap<>();
-                        }
-                        SortedSet<DatedFlight> hourFlightsSet = dateMap.get(hourOfDay);
-                        if (hourFlightsSet == null) {
-                            hourFlightsSet = new TreeSet<>();
-                        }
-                        hourFlightsSet.add(datedFlight);
-                        dateMap.put(hourOfDay, hourFlightsSet);
-                        datedFlightsMap.put(departureDate, dateMap);
-                        //
-                        String nameKey = datedFlight.getAirlineDesignator() + datedFlight.getFlightNumber();
-                        SortedSet<DatedFlight> flightsSet = namedFlightsMap.get(nameKey);
-                        if (flightsSet == null) {
-                            flightsSet = new TreeSet<>();
-                        }
-                        flightsSet.add(datedFlight);
-                        namedFlightsMap.put(nameKey, flightsSet);
+                        auraModel.addFlight(datedFlight);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -93,9 +67,6 @@ class LoadRepositoryTask extends SwingWorker<Void, String> {
 
         //SUCCESS
         if (current >= max) {
-
-            auraModel.setDatedFlightsMap(datedFlightsMap);
-            auraModel.setNamedFlightsMap(namedFlightsMap);
 
             if (!auraModel.getDatedFlightsMap().isEmpty()) {
                 auraModel.setSelectedDate(auraModel.getDatedFlightsMap().firstKey());
@@ -118,13 +89,13 @@ class LoadRepositoryTask extends SwingWorker<Void, String> {
         progressable.close();
     }
 
-    private List<File> addFiles(List<File> files, File dir, int depth, int maxDepth) {
+    private void addFiles(List<File> files, File dir, int depth, int maxDepth) {
         if (depth >= maxDepth) {
-            return files;
+            return;
         }
         if (!dir.isDirectory() && dir.getName().endsWith(".json")) {
             files.add(dir);
-            return files;
+            return;
         }
         File[] ffs = dir.listFiles();
         if (ffs != null) {
@@ -133,7 +104,6 @@ class LoadRepositoryTask extends SwingWorker<Void, String> {
                 addFiles(files, file, depth, maxDepth);
             }
         }
-        return files;
     }
 
 }

@@ -7,6 +7,7 @@ import lombok.Data;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -80,6 +81,15 @@ public class DatedFlight implements Comparable<DatedFlight> {
                 && ObjectUtils.compare(this.airlineDesignator, c.airlineDesignator) == 0
                 && ObjectUtils.compare(this.flightNumber, c.flightNumber) == 0
                 ;
+    }
+
+    @JsonIgnore
+    public String getUniqueId() {
+        return this.from + SHORT_SPACER +
+                this.departureDate + SHORT_SPACER +
+                this.airlineDesignator + SHORT_SPACER +
+                this.flightNumber + SHORT_SPACER +
+                this.departureTime;
     }
 
     @Override
@@ -216,11 +226,31 @@ public class DatedFlight implements Comparable<DatedFlight> {
         newStatus = status;
     }
 
+    @JsonIgnore
     public boolean isCreated() {
         return status.equals(FlightStatus.CREATED);
     }
 
+    @JsonIgnore
     public boolean isConflict() {
         return status.equals(FlightStatus.CONFLICT);
+    }
+
+    @JsonIgnore
+    public String getFileKeyFull() {
+        return departureDate.getYear() + getFileKeyShort();
+    }
+
+    @JsonIgnore
+    public String getFileKeyShort() {
+        return File.separator + DOUBLE_ZERO_FORMAT.format(departureDate.getMonthValue()) + "_" + MONTHS[departureDate.getMonthValue() - 1] +
+                File.separator + DOUBLE_ZERO_FORMAT.format(departureDate.getDayOfMonth()) + "_" + WEEKDAYS[departureDate.getDayOfWeek().getValue() - 1] +
+                File.separator + DOUBLE_ZERO_FORMAT.format(departureTime.getHour());
+    }
+
+    public void update(DatedFlight flight) {
+        this.departureTime = flight.getNewDepartureTime();
+        this.arrivalTime = flight.getNewArrivalTime();
+        this.status = flight.getNewStatus();
     }
 }

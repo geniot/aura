@@ -1,5 +1,6 @@
 package io.github.geniot.aura.view.dialogs;
 
+import io.github.geniot.aura.action.SyncTask;
 import io.github.geniot.aura.model.AuraModel;
 import io.github.geniot.aura.view.MainFrameView;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +16,7 @@ import static io.github.geniot.aura.view.MainFrameView.ICON;
 public class SyncDialog extends JDialog {
     private MainFrameView mainFrameView;
 
-    private SyncView syncView = new SyncView();
+    public SyncView syncView = new SyncView();
 
     public SyncDialog(MainFrameView mfv, AuraModel auraModel) {
         this.mainFrameView = mfv;
@@ -54,6 +55,13 @@ public class SyncDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+            }
+        });
+
+        syncView.syncButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SyncTask(SyncDialog.this, auraModel, mainFrameView.getApplicationEventPublisher()).execute();
             }
         });
 
