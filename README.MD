@@ -18,7 +18,7 @@ Coloring conventions:
 * GREEN - new flights
 * YELLOW - changed flights
 * GRAY - flights marked for removal
-* RED - conflicting flights that will not be added (appears only the Add Dialog)  
+* RED - conflicting flights that will not be added (appears only the Create Flights Dialog)  
 
 ![alt text](screenshots/generate.png "Add Window")
 
