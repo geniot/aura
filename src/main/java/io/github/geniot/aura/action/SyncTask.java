@@ -4,6 +4,7 @@ import io.github.geniot.aura.event.AppEvent;
 import io.github.geniot.aura.model.AuraModel;
 import io.github.geniot.aura.model.DatedFlight;
 import io.github.geniot.aura.model.EventType;
+import io.github.geniot.aura.model.FlightStatus;
 import io.github.geniot.aura.view.dialogs.SyncDialog;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -60,6 +61,7 @@ public class SyncTask extends SwingWorker<Void, String> {
             auraModel.getUpdatedFlights().clear();
             //create
             for (DatedFlight datedFlight : auraModel.getCreatedFlights()) {
+                datedFlight.setStatus(FlightStatus.ACTIVE);
                 auraModel.addFlight(datedFlight);
             }
             auraModel.getCreatedFlights().clear();
@@ -69,9 +71,10 @@ public class SyncTask extends SwingWorker<Void, String> {
             }
             auraModel.getDeletedFlights().clear();
 
+            applicationEventPublisher.publishEvent(new AppEvent(this, EventType.REPOSITORY_UNLOADED));
             applicationEventPublisher.publishEvent(new AppEvent(this, EventType.REPOSITORY_LOADED));
 
-//            runCommand("git push", f, true);
+            runCommand("git push", f, true);
 
         } catch (Exception ex) {
             syncDialog.syncView.logTextArea.append(ExceptionUtils.getStackTrace(ex));
